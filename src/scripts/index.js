@@ -43,9 +43,11 @@ const handleFlipCard = (event) => {
     firstCard = cardSelected
     firstCardImg = firstCard.querySelector('.front img').src
   } else {
-    secondCard = cardSelected
-    secondCardImg = secondCard.querySelector('.front img').src
-    checkCardsMatch(firstCardImg, secondCardImg)
+    if(cardSelected !== firstCard) {
+      secondCard = cardSelected
+      secondCardImg = secondCard.querySelector('.front img').src
+      checkCardsMatch(firstCardImg, secondCardImg)
+    }
   }
 }
 

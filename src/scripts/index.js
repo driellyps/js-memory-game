@@ -8,9 +8,21 @@ const images = [
   'shell',
   'starfish',
 ]
-const cardsContainer = document.querySelector('.cards-container')
+
+const score = document.querySelector('.score span')
+
+const handleScore = () => {
+  const bestScore = localStorage.getItem('bestScore')
+  if(!bestScore || bestScore > turns) {
+    score.textContent = turns
+    return localStorage.setItem('bestScore', turns)
+  }
+
+  score.textContent = bestScore
+}
 
 const shuffleCards = () => {
+  const cardsContainer = document.querySelector('.cards-container')
   //make sure container is empty before adding new cards
   cardsContainer.innerHTML = ''
   //duplicate images and sort it randomly
@@ -32,6 +44,7 @@ const shuffleCards = () => {
   }
 }
 
+handleScore()
 shuffleCards()
 
 const refreshButton = document.querySelector('#refresh')
@@ -42,6 +55,7 @@ let firstCardImg = null;
 let secondCard = null;
 let secondCardImg = null;
 let turns = 0;
+let numberOfMatches = 0
 
 const prepareNewRound = () => {
   //clear variables for new round and adjust number of turns
@@ -49,7 +63,6 @@ const prepareNewRound = () => {
   secondCard = null
   firstCardImg = null;
   secondCardImg = null;
-  turns += 1
   turnsIndicator.innerHTML = turns
 }
 
@@ -62,6 +75,10 @@ const unflipCards = () => {
 const checkCardsMatch = (img1, img2) => {
   if (img1 === img2) {
     //it's a match, just prepare a new round
+    numberOfMatches += 1
+    if(numberOfMatches === images.length) {
+      handleScore()
+    }
     prepareNewRound()
   } else {
     //flip cards to initial state and prepare for a new round
@@ -79,6 +96,7 @@ const handleFlipCard = (event) => {
     firstCardImg = firstCard.querySelector('.front img').src
   } else {
     if(cardSelected !== firstCard) {
+      turns += 1
       secondCard = cardSelected
       secondCardImg = secondCard.querySelector('.front img').src
       checkCardsMatch(firstCardImg, secondCardImg)

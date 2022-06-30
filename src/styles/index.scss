@@ -57,11 +57,11 @@ ul {
     max-height: 100px;
   }
 
-  &:hover .front{
+  &.flipped .front{
     transform: rotateY(0);
   }
 
-  &:hover .back{
+  &.flipped .back{
     transform: rotateY(180deg);
   }
 
@@ -75,8 +75,9 @@ ul {
   border-radius: 10px;
   position: absolute;
   backface-visibility: hidden;
-  transition: transform 0.3s linear;
-
+  transition: transform 0.2s;
+  pointer-events: none;
+  user-select: none;
 }
 
 .front {

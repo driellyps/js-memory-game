@@ -1,5 +1,40 @@
 import '../styles/index.scss';
 
+const images = [
+  'crab',
+  'eel',
+  'jellyfish',
+  'octopus',
+  'shell',
+  'starfish',
+]
+const cardsContainer = document.querySelector('.cards-container')
+
+const shuffleCards = () => {
+  //make sure container is empty before adding new cards
+  cardsContainer.innerHTML = ''
+  //duplicate images and sort it randomly
+  const imagePairs = [...images, ...images]
+    .sort(() => Math.random() > 0.5 ? 1 : -1)
+
+  //add cards to html more dynamically
+  for(let i = 0; i < images.length * 2; i++) {
+    const newCard = document.createElement('li')
+    newCard.classList.add('card')
+    newCard.innerHTML = `
+      <div class="back">
+        <img src="card-back.svg" alt="mosaic image">
+      </div>
+      <div class="front">
+        <img src="icons8-${imagePairs[i]}-64.png" alt="${imagePairs[i]} image">
+      </div>`
+    cardsContainer.appendChild(newCard)
+  }
+}
+
+shuffleCards()
+
+const refreshButton = document.querySelector('#refresh')
 const cards = document.querySelectorAll('.card');
 const turnsIndicator = document.querySelector('.turns span')
 let firstCard = null;
@@ -51,9 +86,22 @@ const handleFlipCard = (event) => {
   }
 }
 
+const handleRefresh = () => {
+  turns = 0
+  turnsIndicator.innerHTML = turns
+  shuffleCards()
+  const newCards = document.querySelectorAll('.card');
+  newCards.forEach(card => {
+    card.addEventListener('click', handleFlipCard)
+    card.addEventListener('touch', handleFlipCard)
+  })
+}
+
 //add event listener to all cards to add flip effect when they are clicked
 cards.forEach(card => {
   card.addEventListener('click', handleFlipCard)
   card.addEventListener('touch', handleFlipCard)
 })
 
+refreshButton.addEventListener('click', handleRefresh)
+refreshButton.addEventListener('touch', handleRefresh)

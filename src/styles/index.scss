@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gantari:wght@400;700&display=swap');
 
 * {
   margin: 0;
@@ -18,6 +18,32 @@ body {
 
 .header {
   padding: 2rem 0;
+
+  .game-actions {
+    padding: 0.5rem;
+
+    &, #refresh {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    #refresh {
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: none;
+      color: #123;
+      transition: background-color 0.3s, color 0.3s;
+
+      &:hover {
+        background-color: #246;
+        color: white;
+      }
+    }
+
+  }
 }
 
 .wrapper {

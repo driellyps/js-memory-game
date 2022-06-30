@@ -1,4 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gantari', sans-serif;
+  list-style: none;
+}
+
 body {
   background-color: #123;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.header {
+  padding: 2rem 0;
+}
+
+.wrapper {
+  height: 500px;
+  width: 500px;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  transform-style: preserve-3d;
+
+  &,
+  .back,
+  .front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  &:hover .front{
+    transform: rotateY(0);
+  }
+
+  &:hover .back{
+    transform: rotateY(180deg);
+  }
+
+}
+
+.back,
+.front {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 10px;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.3s linear;
+
+}
+
+.front {
+  transform: rotateY(-180deg);
 }

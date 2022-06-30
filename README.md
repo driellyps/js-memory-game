@@ -1,29 +1,29 @@
-# Schmemory starter kit
+# Schmemory game🕹
 
-This starter kit includes Webpack, Babel and SASS to hopefully help with
-reducing the time spent on boilerplate stuff. Please start by running
+## Getting Started
+
+This boilerplate includes Webpack, Babel and SASS. To install the dependecies and run the code, run the following commands
 
 ```bash
 npm install
+npm start
 ```
 
-This will get these packages installed. When that's done, you can — at any time — do `npm start` to
-run a development server. If you need to serve static files, place them in the `static` folder.
+## About the project
 
-If you are interested in using a simple server to produce images for your cards, you can start the project with
-`npm run start:all` instead. Have a look below for the API documentation.
+This is a simple memory game developed with vanilla JavaScript, HTML and SCSS.
+You can match the cards, if you get it right, the cards will keep facing up. But if you get it wront they will flip back.
+The game keeps a track of how many turns you have played and your best score is saved on localStorage.
+You also have the option to start over in the middle of the game, or when you finish matching all cards by pressing the `refresh` button.
 
-## Example image server
+The focus for this project was:
 
-This HTTP server will generate square images (either in PNG or SVG format) for a given string and
-size in pixels. It will start on localhost port 3002 by default, and has CORS enabled.
+- Make sure the simple functionalities work the best as possible
+- Render cards through the Javascript so it makes it easier to change the images we want to use or the number of cards
+- Add a refresh button so user doesn't need to refresh the whole page to start a new game
+- Save best score based on the amount of turns necessary to match all the cards
 
-### API
+Can be improved:
 
-#### GET /png/:identifier/:size
-
-Example: `GET /png/alice/200` will return a PNG image of size 200x200 for the string 'alice'.
-
-#### GET /svg/:identifier/:size
-
-Example: `GET /svg/alice/200` will return a SVG image of size 200x200 for the string 'alice'.
+- Add more css animations to provide a nicer UX
+- Show a message when the game is finished
